@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
+using ORMAndDapper_Exercise1;
 using System.Data;
 
 var config = new ConfigurationBuilder()
@@ -11,4 +12,15 @@ string connString = config.GetConnectionString("DefaultConnection");
 
 IDbConnection conn = new MySqlConnection(connString);
 
+var departmentRepo = new DapperDepartmentRepository(conn);
 
+departmentRepo.InsertDepartment("Colins Dept");
+
+var departments = departmentRepo.GetAllDepartments();
+
+foreach (var department in departments)
+{
+    Console.WriteLine(department.DepartmentID);
+    Console.WriteLine(department.Name);
+    Console.WriteLine();
+}
