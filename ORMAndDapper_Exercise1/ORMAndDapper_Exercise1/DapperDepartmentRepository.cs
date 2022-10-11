@@ -28,5 +28,7 @@ namespace ORMAndDapper_Exercise1
             _conn.Execute("INSERT INTO departments (Name) VALUES (@name)",
                 new { name });
         }
+
+        
     }
 }
